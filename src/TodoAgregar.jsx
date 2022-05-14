@@ -2,7 +2,7 @@ import './Todo.css'
 import check from './icon-check.svg'
 import equis from './icon-cross.svg'
 
-function TodoAgregar({values,setValues,varr,value,back}){
+function TodoAgregar({mododia,values,setValues,varr,value,back}){
 
 	
 		if(value==''){
@@ -75,7 +75,7 @@ function TodoAgregar({values,setValues,varr,value,back}){
  	return(
  			  <div className="TodoAgregarContainers">
                   <button onClick={(e)=> {ClickCheck(e)} } style={{background:values[varr][0].active}} className="Check2"><img src={check} alt=""/></button>
-                  <p style={{color:values[varr][0].color,textDecoration:values[varr][0].completado}} className="ValueP">{value}</p>
+                  <p style={{color:mododia.colorletra,textDecoration:values[varr][0].completado}} className="ValueP">{value}</p>
                   <button onClick={(e)=> {ClickEquis(e)} }className="Equis"><img src={equis} alt=""/></button>
               </div> 
 

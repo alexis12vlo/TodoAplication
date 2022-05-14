@@ -237,7 +237,9 @@
 
 	opacity: 1;
 }
-
+.TodoAgregarContainersFooterBottoms a:hover{
+	color: hsl(192, 100%, 40%) ;
+}
 
 
 @media screen and (max-width: 600px) {
@@ -345,6 +347,9 @@
 	font-weight: 400;
 	color: #8B8B8B;
 
+}
+.TodoAgregarContainersFooterBottoms a:hover{
+	color: #201D1D;
 }
 .TodoAgregarContainersFooterBottoms a{
 	cursor: pointer;

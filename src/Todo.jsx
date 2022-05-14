@@ -1,11 +1,15 @@
 import sol from './icon-moon.svg'
+import sun from './icon-sun.svg'
 import check from './icon-check.svg'
 import equis from './icon-cross.svg'
 import {useState} from 'react';
 import TodoAgregar from './TodoAgregar.jsx'
+import noche from './bg-desktop-dark.jpg'
+import dia from './bg-desktop-light.jpg'
 
-function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,setValuesss}) {
+function Todo({mododia,modonoche,setModonoche,setMododia,key,setValuesarray,value,values,valuesarray,setValues,valuesss,setValuesss}) {
  const [k,setK]=useState('')
+
 
   function Change(e){
    value[0].value=e.target.value
@@ -13,16 +17,26 @@ function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,se
   
     
   }
-  function ClickOnBlur(){
+ 
 
 
-    
-  }
+
+
+
+
+
+
+
+
+
   function Key(e){
 
-
+    
     if(e.keyCode==13){
-    console.log(k)
+      if(value[0].value==''){
+      alert('Ingresa Un Evento')
+    }else{
+
     setK(k+1)
     value[0].id=Number(values.length);
 
@@ -33,6 +47,7 @@ function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,se
    
   
     e.target.value='';
+  }
  
   }
 
@@ -84,6 +99,38 @@ function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,se
       setValuesarray([...valuesarray])
       
   }
+  function Modo(){
+  
+      if(mododia.logo2=='flex'){
+  
+        mododia.logo2='none';
+        mododia.logo='flex';
+        mododia.color='hsl(236, 33%, 92%)'
+        mododia.color2='hsl(233, 11%, 84%)';
+        mododia.colorletra='#000000'
+        mododia.image='url(../images/bg-desktop-dark.jpg)'
+        mododia.image=dia;
+
+        setMododia({...mododia});
+        
+        }else{
+
+        mododia.logo='none';
+        mododia.logo2='flex';
+        mododia.color='hsl(235, 21%, 11%)'
+        mododia.color2='hsl(235, 24%, 19%)';
+        mododia.colorletra='#FFFFFF'
+         mododia.image=noche;
+
+
+        setMododia({...mododia});
+
+
+
+        }
+
+
+  }
 
   
 
@@ -95,15 +142,16 @@ function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,se
                 <h1>TODO</h1>
             </div>
             <div className="TodoTitleLogo">
-                <button><img src={sol} alt=""/></button>
+                <button style={{display:mododia.logo}} onClick={Modo}><img src={sol} alt=""/></button>
+                <button style={{display:mododia.logo2}} onClick={Modo} ><img src={sun} alt=""/></button>
             </div>
         </div>
 
-        <div className="TodoAgregar">   
+        <div style={{backgroundColor:mododia.color2}} className="TodoAgregar">   
 
           <div className="TodoAgregarContainer">
               <button  style={{background:value[0].active}} className="Check"><img src={check} alt=""/></button>
-              <input placeholder="Ingresa un Evento" onKeyDown={
+              <input style={{color:mododia.colorletra}} placeholder="Ingresa un Evento" onKeyDown={
                 (e)=>{Key(e)}
               } onChange={
                 (e)=>{Change(e)}
@@ -114,14 +162,14 @@ function Todo({key,setValuesarray,value,values,valuesarray,setValues,valuesss,se
 
         </div>
 
-        <div className="TodoAgregados">
+        <div style={{backgroundColor:mododia.color2}} className="TodoAgregados">
 
 
-              <div className="TodoAgregadoss">{
+              <div style={{backgroundColor:mododia.color2}} className="TodoAgregadoss">{
 
               valuesarray.map((elemento)=>
 
-                <TodoAgregar key={elemento[0].id} setValues={setValues} varr={elemento[0].id} values={values} value={elemento[0].value}/>
+                <TodoAgregar mododia={mododia} key={elemento[0].id} setValues={setValues} varr={elemento[0].id} values={values} value={elemento[0].value}/>
               )
 
               }
